@@ -8,6 +8,7 @@ import AuthContext from '../../store/auth-context';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
+
   const cartCtx = useContext(CartContext);
   const authCtx = useContext(AuthContext);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -72,8 +73,13 @@ const Cart = (props) => {
         <span>{totalAmount}</span>
       </div>
       {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+        <Checkout
+          onConfirm={submitOrderHandler}
+          onCancel={props.onClose}
+          onConfirmOrder={props.onClick}
+        />
       )}
+
       {!isCheckout && modalActions}
     </Modal>
   );

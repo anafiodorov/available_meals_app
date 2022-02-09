@@ -91,6 +91,7 @@ const Checkout = (props) => {
     });
     props.onCancel();
     cartCtx.emptyCart();
+    props.onConfirmOrder();
   };
 
   const nameControlClasses = `${classes.control} ${
