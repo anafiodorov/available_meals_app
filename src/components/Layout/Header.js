@@ -5,9 +5,15 @@ import Background from '../UI/Background';
 import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { Link } from 'react-router-dom';
+import Logout from '../Pages/Logout';
 
 const Header = (props) => {
   const authCtx = useContext(AuthContext);
+
+  const logOutUser = () => {
+    authCtx.logOutUser();
+    localStorage.removeItem('person');
+  };
   return (
     <Background>
       <HeaderCartButton onClick={props.onShowCart} />
@@ -21,11 +27,7 @@ const Header = (props) => {
           </Link>
         </Fragment>
       )}
-      {authCtx.isLoggedIn && (
-        <Link to='/logout'>
-          <Button>Logout</Button>
-        </Link>
-      )}
+      {authCtx.isLoggedIn && <Logout onClick={logOutUser}>Logout</Logout>}
     </Background>
   );
 };
