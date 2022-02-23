@@ -42,6 +42,8 @@ const Login = () => {
     console.log(authCtx.user['name']);
 
     if (accessToken) {
+      localStorage.setItem('person', JSON.stringify(userLoginData));
+      authCtx.logInUser();
       navigate('../', { replace: true });
     }
   };

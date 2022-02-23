@@ -1,11 +1,17 @@
-.card {
-  height: 400px;
+.inner {
+  height: 500px;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  /* border-radius: 14px; */
+  border-radius: 14px;
   background-color: rgb(180, 170, 170);
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  
+
+}
+.outer{
+  width: 900px;
+  height: 500px;
+  border-radius: 11px;
+  overflow: hidden;
 }
