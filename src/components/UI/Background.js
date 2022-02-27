@@ -8,7 +8,11 @@ const Background = (props) => {
     <React.Fragment>
       <div className={classes.container}>
         <header className={classes.header}>
-          <Link className={classes.link} to='/'>
+          <Link
+            className={classes.link}
+            onClick={() => window.scrollTo({ top: 0 })}
+            to='/'
+          >
             <h1>React Meals</h1>
           </Link>
           {props.children}

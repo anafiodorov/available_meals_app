@@ -2,8 +2,10 @@ import { useContext } from 'react';
 import classes from './MealItem.module.css';
 import MealItemForm from './MealItemForm';
 import CartContext from '../../../store/cart-context';
+import AuthContext from '../../../store/auth-context';
 
 const MealItem = (props) => {
+  const authCtx = useContext(AuthContext);
   const price = `$${props.price.toFixed(2)}`;
   const cartCtx = useContext(CartContext);
   const addToCartHandler = (amount) => {
@@ -23,7 +25,7 @@ const MealItem = (props) => {
         <div className={classes.price}>{price}</div>
       </div>
       <div>
-        <MealItemForm onAddToCart={addToCartHandler} />
+        {authCtx.isLoggedIn && <MealItemForm onAddToCart={addToCartHandler} />}
       </div>
     </li>
   );
