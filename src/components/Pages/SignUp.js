@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Layout/Header';
 import classes from './SignUp.module.css';
 const SignUp = () => {
   let navigate = useNavigate();
@@ -69,7 +70,8 @@ const SignUp = () => {
     navigate('../', { replace: true });
   };
   return (
-    <div className={classes.container}>
+    <Fragment>
+      <Header />
       <form action='#' className={classes['cta-form']}>
         <div>
           <label htmlFor='full-name'>Full Name</label>
@@ -145,7 +147,7 @@ const SignUp = () => {
           Sign up now
         </button>
       </form>
-    </div>
+    </Fragment>
   );
 };
 

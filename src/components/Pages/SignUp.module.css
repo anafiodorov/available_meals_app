@@ -8,26 +8,27 @@ html {
   padding: 0;
   margin: 0;
   font-size: 90%;
-  overflow-x: hidden;
-}
-.container{
-  background-color: rgba(233, 181, 86, 0.945);
-  height: 100vh;
+  overflow: scroll;
+  height: 400rem;
   position: relative;
-  }
+}
+
 
 .cta-form {
+  background-color: grey;
+  padding: 2rem;
+  border-radius: 1rem;
   position: absolute;
-  top: 50%;
+  top: 12%;
   left: 50%;
-  transform: translate(-50%, -60%);
-  width: 50vh;
+  transform: translate(-50%, -50%);
+  width: 35rem;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 2.4rem;
 }
 .btn--form {
-  width:15rem;
+  width:13rem;
   justify-self: center;
 }
 .cta-form label {
@@ -37,9 +38,10 @@ html {
   margin-bottom: 1.2rem;
 }
 .cta-form input {
+  display: auto;
   width: 100%;
   padding: 1.2rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-family: inherit;
   color: inherit;
   border: none;
@@ -48,13 +50,11 @@ html {
 }
 
 .btn--form{
-
   background-color: #45260a;
   color: #fdf2e9;
-  align-self: end;
   padding: 1.2rem;
   margin-top: 1.2rem;
-  
 }
+
 
 

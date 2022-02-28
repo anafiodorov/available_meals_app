@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useState, useContext } from 'react';
 import classes from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../store/auth-context';
+import Header from '../Layout/Header';
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
@@ -41,11 +42,14 @@ const Login = () => {
     console.log(authCtx.user['name']);
 
     if (accessToken) {
+      localStorage.setItem('LoggedInPerson', JSON.stringify(userLoginData));
+      authCtx.logInUser();
       navigate('../', { replace: true });
     }
   };
   return (
-    <div className={classes.container}>
+    <Fragment>
+      <Header />
       <form action='#' className={classes['cta-form']}>
         <div>
           <label htmlFor='email'>Email address</label>
@@ -77,7 +81,7 @@ const Login = () => {
           Login
         </button>
       </form>
-    </div>
+    </Fragment>
   );
 };
 

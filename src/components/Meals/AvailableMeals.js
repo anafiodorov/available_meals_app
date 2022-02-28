@@ -9,26 +9,34 @@ const AvailableMeals = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+    async function getAvailableMeals() {
+      fetch('http://localhost:3001/meals')
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (isMounted) {
+            setAvailableMeals(
+              data.map((item) => ({
+                key: item.mealid,
+                id: item.mealid,
+                name: item.mealname,
+                description: item.description,
+                price: parseInt(item.price),
+              }))
+            );
+            setIsLoading(false);
+          } else {
+            console.log('aici era buba');
+          }
+        });
+    }
     getAvailableMeals();
+    return () => {
+      isMounted = false;
+    };
   }, []);
-  const getAvailableMeals = () => {
-    fetch('http://localhost:3001/meals')
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setAvailableMeals(
-          data.map((item) => ({
-            key: item.mealid,
-            id: item.mealid,
-            name: item.mealname,
-            description: item.description,
-            price: parseInt(item.price),
-          }))
-        );
-        setIsLoading(false);
-      });
-  };
 
   if (isLoading) {
     return (
