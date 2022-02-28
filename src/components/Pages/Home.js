@@ -4,7 +4,8 @@ import Header from '../Layout/Header';
 import Meals from '../Meals/Meals';
 import CartProvider from '../../store/CartProvider';
 import Modal from '../UI/Modal';
-function Home(props) {
+
+const Home = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
 
   const [showConfirmationOrderModal, setShowConfirmationOrderModal] =
@@ -39,6 +40,6 @@ function Home(props) {
       </main>
     </CartProvider>
   );
-}
+};
 
 export default Home;
