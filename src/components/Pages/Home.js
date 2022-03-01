@@ -7,7 +7,7 @@ import Modal from '../UI/Modal';
 
 const Home = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
-
+  const [error, setError] = useState('');
   const [showConfirmationOrderModal, setShowConfirmationOrderModal] =
     useState(false);
 
@@ -29,10 +29,16 @@ const Home = (props) => {
   return (
     <CartProvider>
       {cartIsShown && (
-        <Cart onClose={hideCartHandler} onClick={showConfirmationHandler} />
+        <Cart
+          onClose={hideCartHandler}
+          onClick={showConfirmationHandler}
+          setError={setError}
+        />
       )}
       {showConfirmationOrderModal && (
-        <Modal onClose={hideConfirmationHandler}>You order is processed</Modal>
+        <Modal onClose={hideConfirmationHandler}>
+          {error.length !== 0 ? error : 'Your order is processed'}
+        </Modal>
       )}
       <Header onShowCart={showCartHandler} />
       <main>

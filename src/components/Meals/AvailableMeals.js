@@ -27,8 +27,6 @@ const AvailableMeals = () => {
               }))
             );
             setIsLoading(false);
-          } else {
-            console.log('aici era buba');
           }
         });
     }

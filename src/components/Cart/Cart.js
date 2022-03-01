@@ -5,10 +5,11 @@ import CartContext from '../../store/cart-context';
 import CartItem from '../Cart/CartItem';
 import Checkout from './Checkout';
 import AuthContext from '../../store/auth-context';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
-
+  let navigate = useNavigate();
   const cartCtx = useContext(CartContext);
   const authCtx = useContext(AuthContext);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -31,9 +32,20 @@ const Cart = (props) => {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + authCtx.user.accessToken,
       },
-
       body: JSON.stringify(data),
+    }).then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json();
+      } else {
+        props.setError('Your sesion has expired you need to login');
+        authCtx.logOutUser();
+
+        setTimeout(() => {
+          navigate('/login');
+        }, 4000);
+      }
     });
+
     console.log(responseUserData);
   };
 
