@@ -26,14 +26,17 @@ const Cart = (props) => {
   };
 
   const submitOrderHandler = async (data) => {
-    let responseUserData = await fetch('http://localhost:3001/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + authCtx.user.accessToken,
-      },
-      body: JSON.stringify(data),
-    }).then((response) => {
+    let responseUserData = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/orders`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + authCtx.user.accessToken,
+        },
+        body: JSON.stringify(data),
+      }
+    ).then((response) => {
       if (response.status >= 200 && response.status <= 299) {
         return response.json();
       } else {

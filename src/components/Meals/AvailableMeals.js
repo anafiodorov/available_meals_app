@@ -11,7 +11,7 @@ const AvailableMeals = () => {
   useEffect(() => {
     let isMounted = true;
     async function getAvailableMeals() {
-      fetch('http://localhost:3001/meals')
+      fetch(`${process.env.REACT_APP_SERVER_URL}/meals`)
         .then((response) => {
           return response.json();
         })
