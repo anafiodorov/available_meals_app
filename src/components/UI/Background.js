@@ -19,7 +19,7 @@ const Background = (props) => {
           </Link>
           {props.children}
 
-          {mealsCtx.availableMeals.length !== 0 && (
+          {mealsCtx.availableMeals.length == 0 && (
             <p className={classes.message}>
               The website needs a few moments to wake up :) Please reload the
               page after 30 seconds!
