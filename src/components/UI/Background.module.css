@@ -1,14 +1,12 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 110%;
   height: 10rem;
   background-color: grey;
   color: black;
   display: grid;
   justify-content:space-around;
-  grid-template-columns: 12fr 1.8fr 1fr 1.05fr;
+  grid-template-columns: 2fr 10fr 1.8fr 1fr 1.05fr;
   align-items: center;
   justify-content: center;
   column-gap: 2rem;
