@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import AuthContext from './auth-context.js';
+
 const AuthProvider = (props) => {
   const [user, setUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,12 +1,15 @@
 import Card from '../UI/Card';
 import classes from './AvailableMeals.module.css';
 import MealItem from './MealItem/MealItem';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import AvailableMealsContext from '../../store/availablemeals-context';
 
 const AvailableMeals = () => {
-  const [availableMeals, setAvailableMeals] = useState([]);
+  // const [availableMeals, setAvailableMeals] = useState([]);
   const [filteredMeals, setFilteredMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const mealsCtx = useContext(AvailableMealsContext);
 
   useEffect(() => {
     let isMounted = true;
@@ -17,7 +20,7 @@ const AvailableMeals = () => {
         })
         .then((data) => {
           if (isMounted) {
-            setAvailableMeals(
+            mealsCtx.setAvailableMeals(
               data.map((item) => ({
                 key: item.mealid,
                 id: item.mealid,
@@ -28,13 +31,25 @@ const AvailableMeals = () => {
             );
             setIsLoading(false);
           }
+          // if (isMounted) {
+          //   setAvailableMeals(
+          //     data.map((item) => ({
+          //       key: item.mealid,
+          //       id: item.mealid,
+          //       name: item.mealname,
+          //       description: item.description,
+          //       price: parseInt(item.price),
+          //     }))
+          //   );
+          //   setIsLoading(false);
+          // }
         });
     }
     getAvailableMeals();
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [mealsCtx]);
 
   if (isLoading) {
     return (
@@ -48,7 +63,7 @@ const AvailableMeals = () => {
     );
   }
   const mealsList = (
-    filteredMeals.length === 0 ? availableMeals : filteredMeals
+    filteredMeals.length === 0 ? mealsCtx.availableMeals : filteredMeals
   ).map((meal) => (
     <MealItem
       key={meal.key}
@@ -60,7 +75,7 @@ const AvailableMeals = () => {
   ));
   const inputHandler = (event) => {
     const arg = event.target.value;
-    const filteredAvailableMeals = availableMeals.filter((meal) => {
+    const filteredAvailableMeals = mealsCtx.availableMeals.filter((meal) => {
       console.log(meal);
       return meal.name.includes(arg);
     });

@@ -4,6 +4,7 @@ import Header from '../Layout/Header';
 import Meals from '../Meals/Meals';
 import CartProvider from '../../store/CartProvider';
 import Modal from '../UI/Modal';
+import AvailableMealsProvider from '../../store/AvalaibleMealsProvider';
 
 const Home = (props) => {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -27,24 +28,26 @@ const Home = (props) => {
   };
 
   return (
-    <CartProvider>
-      {cartIsShown && (
-        <Cart
-          onClose={hideCartHandler}
-          onClick={showConfirmationHandler}
-          setError={setError}
-        />
-      )}
-      {showConfirmationOrderModal && (
-        <Modal onClose={hideConfirmationHandler}>
-          {error.length !== 0 ? error : 'Your order is processed'}
-        </Modal>
-      )}
-      <Header onShowCart={showCartHandler} />
-      <main>
-        <Meals />
-      </main>
-    </CartProvider>
+    <AvailableMealsProvider>
+      <CartProvider>
+        {cartIsShown && (
+          <Cart
+            onClose={hideCartHandler}
+            onClick={showConfirmationHandler}
+            setError={setError}
+          />
+        )}
+        {showConfirmationOrderModal && (
+          <Modal onClose={hideConfirmationHandler}>
+            {error.length !== 0 ? error : 'Your order is processed'}
+          </Modal>
+        )}
+        <Header onShowCart={showCartHandler} />
+        <main>
+          <Meals />
+        </main>
+      </CartProvider>
+    </AvailableMealsProvider>
   );
 };
 

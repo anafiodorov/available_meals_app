@@ -9,11 +9,14 @@ import { Link } from 'react-router-dom';
 import Logout from '../Pages/Logout';
 import { useNavigate } from 'react-router-dom';
 import Base64 from '../Base64';
+import classes from './Header.module.css';
+import AvailableMealsContext from '../../store/availablemeals-context';
 
 const Header = (props) => {
   let navigate = useNavigate();
   const cartCtx = useContext(CartContext);
   const authCtx = useContext(AuthContext);
+  const mealsCtx = useContext(AvailableMealsContext);
 
   const logOutUser = () => {
     authCtx.logOutUser();
@@ -50,23 +53,32 @@ const Header = (props) => {
         authCtx.logInUser();
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <Background>
-      <HeaderCartButton onClick={props.onShowCart} />
-      {!authCtx.isLoggedIn && (
-        <Fragment>
-          <Link onClick={gotoTopPage} to='/login'>
-            <Button>Login</Button>
-          </Link>
-          <Link onClick={gotoTopPage} to='/signup'>
-            <Button>SignUp</Button>
-          </Link>
-        </Fragment>
-      )}
-      {authCtx.isLoggedIn && <Logout onClick={logOutUser}>Logout</Logout>}
-    </Background>
+    <div>
+      <Background>
+        <HeaderCartButton onClick={props.onShowCart} />
+        {!authCtx.isLoggedIn && (
+          <Fragment>
+            <Link onClick={gotoTopPage} to='/login'>
+              <Button>Login</Button>
+            </Link>
+            <Link onClick={gotoTopPage} to='/signup'>
+              <Button>SignUp</Button>
+            </Link>
+          </Fragment>
+        )}
+        {authCtx.isLoggedIn && <Logout onClick={logOutUser}>Logout</Logout>}
+        {mealsCtx.length == 0 && (
+          <p className={classes.message}>
+            The website needs a few moments to wake up :) Please reload the page
+            after 30 seconds!
+          </p>
+        )}
+      </Background>
+    </div>
   );
 };
 
