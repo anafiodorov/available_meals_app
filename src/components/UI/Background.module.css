@@ -6,7 +6,7 @@
   color: black;
   display: grid;
   justify-content:space-around;
-  grid-template-columns: 2fr 10fr 1.8fr 1fr 1.05fr;
+  grid-template-columns: 10fr 1.8fr 1fr 1.05fr;
   align-items: center;
   justify-content: center;
   column-gap: 2rem;
@@ -36,4 +36,10 @@
   height: 100%;
   object-fit: cover;
   transform: translate(0, -40%);
+}
+.message{
+  margin: 2rem;
+  text-align: center;
+  color: brown;
+  font-weight: 900;
 }

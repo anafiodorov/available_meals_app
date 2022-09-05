@@ -16,8 +16,7 @@ const Header = (props) => {
   let navigate = useNavigate();
   const cartCtx = useContext(CartContext);
   const authCtx = useContext(AuthContext);
-  const mealsCtx = [];
-  // const mealsCtx = useContext(AvailableMealsContext);
+  const mealsCtx = useContext(AvailableMealsContext);
 
   const logOutUser = () => {
     authCtx.logOutUser();
@@ -60,12 +59,6 @@ const Header = (props) => {
   return (
     <div>
       <Background>
-        {mealsCtx.length == 0 && (
-          <p className={classes.message}>
-            The website needs a few moments to wake up :) Please reload the page
-            after 30 seconds!
-          </p>
-        )}
         <HeaderCartButton onClick={props.onShowCart} />
         {!authCtx.isLoggedIn && (
           <Fragment>
